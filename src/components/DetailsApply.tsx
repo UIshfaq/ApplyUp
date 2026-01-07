@@ -1,14 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useAppliances } from "../contexts/AppliancesContext.tsx";
 
+
+
 export const DetailsAppliances = () => {
     const { id } = useParams();
-    const { appliances } = useAppliances();
+    const { appliances, removeAppliance } = useAppliances();
 
-    // On cherche l'appliance qui correspond à l'ID
     const appliance = appliances.find(a => a.id === id);
 
-    // Si on ne trouve rien (ex: ID inexistant ou page rafraîchie sans storage)
+
     if (!appliance) return (
         <div className="p-4">
             <p className="text-red-500 font-bold">Candidature introuvable</p>
@@ -21,11 +22,13 @@ export const DetailsAppliances = () => {
 
             <div className="flex flex-col gap-3">
                 <div className="mt-4 p-4 bg-gray-50 rounded border">
-                    <strong className="block mb-2 text-gray-700">Description / Motivation :</strong>
+                    <strong className="block mb-2 text-gray-700">Description  :</strong>
                     <p className="whitespace-pre-wrap text-gray-600">
                         {appliance.description || "Aucune description fournie."}
                     </p>
                 </div>
+
+                <button onClick={() => removeAppliance(appliance.id)}>Supprimer</button>
             </div>
         </div>
     );
