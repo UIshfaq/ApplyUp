@@ -16,6 +16,7 @@ export const ApplyForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [job, setJob] = useState<Job["id"]>("front");
+  const [des, setDes] = useState("");
 
   const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ export const ApplyForm = () => {
             name,
             phoneNumber: "",
             job,
-            description: "",
+            description: des,
           });
           navigate("/list");
         }}
@@ -74,7 +75,11 @@ export const ApplyForm = () => {
             </option>
           ))}
         </select>
-        <textarea className="textarea" placeholder="Description"></textarea>
+        <textarea className="textarea"
+                  placeholder="Description"
+                    value={des}
+                    onChange={(e) => setDes(e.target.value)}
+        ></textarea>
         <button className="btn btn-success" type="submit">
           Envoyer
         </button>

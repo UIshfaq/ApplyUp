@@ -4,6 +4,7 @@ import { ApplyForm } from "./components/ApplyForm";
 
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { AppliancesProvider } from "./contexts/AppliancesContext";
+import {DetailsAppliances} from "./components/DetailsApply.tsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ApplyForm />} />
           <Route path="/list" element={<AppliancesList />} />
+            <Route path="/details/:id" element={<DetailsAppliances/>}></Route>
         </Routes>
       </Router>
     </AppliancesProvider>
